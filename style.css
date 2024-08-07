@@ -1,4 +1,4 @@
-/* Import Google Font - Poppins */
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 /* Global styles for resetting margin, padding, box-sizing, and setting the font */
@@ -7,6 +7,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
 /* Section styling for layout and background */
@@ -14,12 +15,13 @@ section {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background: #121321;
+  background: linear-gradient(135deg, #e6e6fa, #d8bfd8);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  perspective: 1000px;
+  color: #333;
+  perspective: 1200px;
+  overflow: hidden;
 }
 
 /* Decorative circle before the section content */
@@ -30,7 +32,9 @@ section::before {
   width: 240px;
   border-radius: 50%;
   transform: translate(-150px, -100px);
-  background: linear-gradient(90deg, #9c27b0, #f3f5f5);
+  background: radial-gradient(circle, #dda0dd, #ee82ee);
+  filter: blur(90px);
+  opacity: 0.6;
 }
 
 /* Decorative circle after the section content */
@@ -41,7 +45,9 @@ section::after {
   width: 240px;
   border-radius: 50%;
   transform: translate(150px, 100px);
-  background: linear-gradient(90deg, #9c27b0, #f3f5f5);
+  background: radial-gradient(circle, #ee82ee, #dda0dd);
+  filter: blur(90px);
+  opacity: 0.6;
 }
 
 /* Container for the card with 3D transformation settings */
@@ -50,8 +56,10 @@ section::after {
   height: 225px;
   width: 375px;
   z-index: 100;
-  transition: 0.6s;
-  transform-style: preserve-3d; /* Ensures 3D children are displayed correctly */
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: 20px;
+  perspective-origin: center;
 }
 
 /* Rotate the container on hover to show the back face */
@@ -65,12 +73,13 @@ section::after {
   height: 100%;
   width: 100%;
   padding: 25px;
-  border-radius: 25px;
-  backdrop-filter: blur(25px);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backface-visibility: hidden;  /* Hides the back face when not visible */
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backface-visibility: hidden;
+  transition: transform 0.8s ease-in-out;
 }
 
 /* Flex settings for the header and logo */
@@ -78,9 +87,6 @@ section::after {
 .front-face .logo {
   display: flex;
   align-items: center;
-}
-
-.front-face header {
   justify-content: space-between;
 }
 
@@ -88,17 +94,25 @@ section::after {
 .front-face .logo img {
   width: 48px;
   margin-right: 10px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.front-face .logo img:hover {
+  transform: scale(1.1);
 }
 
 /* Header text styling */
 h5 {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
+  color: #444;
 }
 
 /* Chip image styling */
 .front-face .chip {
   width: 50px;
+  opacity: 0.9;
 }
 
 /* Card details section layout */
@@ -113,17 +127,22 @@ h5 {
 h6 {
   font-size: 10px;
   font-weight: 400;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  color: #555;
 }
 
 /* Card number text styling */
 h5.number {
   font-size: 18px;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+  color: #333;
 }
 
 /* Cardholder name text styling */
 h5.name {
   margin-top: 20px;
+  color: #555;
 }
 
 /* Back face card settings */
@@ -136,6 +155,9 @@ h5.name {
 /* Back face customer service text styling */
 .card.back-face h6 {
   font-size: 8px;
+  letter-spacing: 0.3px;
+  opacity: 0.7;
+  color: #666;
 }
 
 /* Magnetic strip styling */
@@ -145,7 +167,7 @@ h5.name {
   left: 0;
   height: 45px;
   width: 100%;
-  background: #000;
+  background: #444;
 }
 
 /* Signature strip styling */
@@ -157,12 +179,7 @@ h5.name {
   height: 40px;
   width: 85%;
   border-radius: 6px;
-  background: repeating-linear-gradient(
-    #fff,
-    #fff 3px,
-    #efefef 0px,
-    #efefef 9px
-  );
+  background: repeating-linear-gradient(#fff, #fff 3px, #efefef 0px, #efefef 9px);
 }
 
 /* Security code styling within the signature strip */
@@ -180,4 +197,5 @@ h5.name {
 .card.back-face h5 {
   font-size: 8px;
   margin-top: 15px;
+  color: #777;
 }
